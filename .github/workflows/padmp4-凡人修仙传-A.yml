@@ -23,10 +23,6 @@ jobs:
           timezoneLinux: "Asia/Shanghai"
 
       - uses: actions/checkout@v4
-      # - name: Setup .NET Core
-      #   uses: actions/setup-dotnet@v4
-      #   with:
-      #     dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Install DotNet
         run: |
@@ -39,7 +35,7 @@ jobs:
           ./dotnet-install.sh --channel ${{ env.DOTNET_VERSION }}
 
       - name: DotNet Info
-        run: cd ${{ env.PROJECT }} && ls -l $HOME/.dotnet && $HOME/.dotnet/dotnet --info
+        run: cd ${{ env.PROJECT }} && $HOME/.dotnet/dotnet --info
 
       - name: Install dependencies
         run: |
@@ -59,3 +55,9 @@ jobs:
         run: |
           cd ${{ env.OUTPUT }}
           $HOME/.dotnet/dotnet ${{ env.PROJECT }}.dll
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ vars.A_NAME }}
+          path: ./${{ env.PROJECT }}/${{ vars.A_NAME }}.xml
