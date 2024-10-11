@@ -39,17 +39,17 @@ jobs:
           ./dotnet-install.sh --channel ${{ env.DOTNET_VERSION }}
 
       - name: DotNet Info
-        run: cd ${{ env.PROJECT }} && ls -l $HOME/.dotnet && $HOME/.dotnet --info
+        run: cd ${{ env.PROJECT }} && ls -l $HOME/.dotnet && $HOME/.dotnet/dotnet --info
 
       - name: Install dependencies
         run: |
           cd ${{ env.PROJECT }}
-          $HOME/.dotnet restore
+          $HOME/.dotnet/dotnet restore
 
       - name: Build
         run: |
           cd ${{ env.PROJECT }}
-          $HOME/.dotnet publish -c Release --no-restore -o ${{ env.OUTPUT }} ./${{ env.PROJECT }}.csproj
+          $HOME/.dotnet/dotnet publish -c Release --no-restore -o ${{ env.OUTPUT }} ./${{ env.PROJECT }}.csproj
 
       - name: Run
         env: # Or as an environment variable
@@ -58,4 +58,4 @@ jobs:
           DOWNLOAD_TAGS: ${{ vars.A_DOWNLOAD_TAGS }}
         run: |
           cd ${{ env.OUTPUT }}
-          $HOME/.dotnet ${{ env.PROJECT }}.dll
+          $HOME/.dotnet/dotnet ${{ env.PROJECT }}.dll
