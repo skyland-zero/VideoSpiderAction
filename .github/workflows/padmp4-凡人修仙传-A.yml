@@ -44,12 +44,12 @@ jobs:
       - name: Install dependencies
         run: |
           cd ${{ env.PROJECT }}
-          dotnet restore
+          $HOME/.dotnet restore
 
       - name: Build
         run: |
           cd ${{ env.PROJECT }}
-          dotnet publish -c Release --no-restore -o ${{ env.OUTPUT }} ./${{ env.PROJECT }}.csproj
+          $HOME/.dotnet publish -c Release --no-restore -o ${{ env.OUTPUT }} ./${{ env.PROJECT }}.csproj
 
       - name: Run
         env: # Or as an environment variable
@@ -58,4 +58,4 @@ jobs:
           DOWNLOAD_TAGS: ${{ vars.A_DOWNLOAD_TAGS }}
         run: |
           cd ${{ env.OUTPUT }}
-          dotnet ${{ env.PROJECT }}.dll
+          $HOME/.dotnet ${{ env.PROJECT }}.dll
