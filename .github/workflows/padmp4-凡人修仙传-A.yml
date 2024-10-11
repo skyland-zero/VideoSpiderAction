@@ -37,7 +37,6 @@ jobs:
           sudo wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
           sudo chmod +x ./dotnet-install.sh
           sudo ./dotnet-install.sh --channel ${{ env.DOTNET_VERSION }}
-          sudo ~/.bash_profile
 
       - name: Install dependencies
         run: |
