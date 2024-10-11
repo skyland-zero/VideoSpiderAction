@@ -15,7 +15,7 @@ env:
   OUTPUT: "/home/runner/out"
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
     steps:
       - uses: szenius/set-timezone@v2.0
@@ -60,5 +60,5 @@ jobs:
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ vars.A_NAME }}
-          path: ./${{ env.PROJECT }}/${{ vars.A_NAME }}.xml
+          name: ${{ vars.A_NAME }}.xml
+          path: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
