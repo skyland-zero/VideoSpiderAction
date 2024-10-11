@@ -63,9 +63,16 @@ jobs:
       #     name: ${{ vars.A_NAME }}.xml
       #     path: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
 
-      - name: Release
-        uses: softprops/action-gh-release@v2
+      # - name: Release
+      #   uses: softprops/action-gh-release@v2
+      #   with:
+      #     name: ${{ vars.A_NAME }}
+      #     tag_name: ${{ vars.A_NAME }}
+      #     files: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
+
+      - uses: ncipollo/release-action@v1
         with:
-          name: ${{ vars.A_NAME }}
-          tag_name: ${{ vars.A_NAME }}
-          files: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
+          allowUpdates: true
+          artifacts: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ vars.A_NAME }}
