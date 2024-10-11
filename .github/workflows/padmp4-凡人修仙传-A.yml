@@ -55,6 +55,7 @@ jobs:
         run: |
           cd ${{ env.OUTPUT }}
           $HOME/.dotnet/dotnet ${{ env.PROJECT }}.dll
+          ls -l
 
       - name: Archive code coverage results
         uses: actions/upload-artifact@v4
