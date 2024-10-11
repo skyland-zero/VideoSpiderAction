@@ -73,6 +73,8 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
+          removeArtifacts: true
+          replacesArtifacts: true
           artifacts: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ vars.A_NAME }}
