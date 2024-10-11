@@ -10,7 +10,7 @@ on:
 #     - cron: "*/13 * * * *"
 
 env:
-  DOTNET_VERSION: "9.0.0-rc.2" # The .NET SDK version to use
+  DOTNET_VERSION: "9.0.0" # The .NET SDK version to use
   PROJECT: "padmp4"
   OUTPUT: "/home/runner/out"
 
