@@ -38,6 +38,9 @@ jobs:
           sudo chmod +x ./dotnet-install.sh
           sudo ./dotnet-install.sh --channel ${{ env.DOTNET_VERSION }}
 
+      - name: DotNet Info
+        run: cd ${{ env.PROJECT }} && dotnet --info
+
       - name: Install dependencies
         run: |
           cd ${{ env.PROJECT }}
