@@ -10,7 +10,7 @@ on:
 #     - cron: "*/13 * * * *"
 
 env:
-  DOTNET_VERSION: "9.0.100-rc.2" # The .NET SDK version to use
+  DOTNET_VERSION: "9.0" # The .NET SDK version to use
   PROJECT: "padmp4"
   OUTPUT: "/home/runner/out"
 
@@ -22,11 +22,21 @@ jobs:
         with:
           timezoneLinux: "Asia/Shanghai"
 
-      - uses: actions/checkout@v4
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+      # - uses: actions/checkout@v4
+      # - name: Setup .NET Core
+      #   uses: actions/setup-dotnet@v4
+      #   with:
+      #     dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install DotNet
+        run: |
+          export DOTNET_ROOT=$HOME/.dotnet
+          export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+          apt-get install -y wget
+          wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+          chmod +x ./dotnet-install.sh
+          ./dotnet-install.sh --channel ${{ env.DOTNET_VERSION }}
+          ~/.bash_profile
 
       - name: Install dependencies
         run: |
