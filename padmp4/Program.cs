@@ -27,9 +27,9 @@ void GetEnv()
     name = Environment.GetEnvironmentVariable("NAME");
     var temp = Environment.GetEnvironmentVariable("DOWNLOAD_TAGS");
     Console.WriteLine("环境变量读取完成：");
-    Console.WriteLine("URL:" + url);
-    Console.WriteLine("NAME:" + name);
-    Console.WriteLine("DOWNLOAD_TAGS:" + temp);
+    Console.WriteLine("URL: " + url);
+    Console.WriteLine("NAME: " + name);
+    Console.WriteLine("DOWNLOAD_TAGS: " + temp);
     if (string.IsNullOrWhiteSpace(url))
     {
         Console.WriteLine("请设置URL变量");
