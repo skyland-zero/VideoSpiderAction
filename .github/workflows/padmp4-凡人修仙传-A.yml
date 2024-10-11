@@ -57,8 +57,14 @@ jobs:
           $HOME/.dotnet/dotnet ${{ env.PROJECT }}.dll
           ls -l
 
-      - name: Archive code coverage results
-        uses: actions/upload-artifact@v4
+      # - name: Archive code coverage results
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: ${{ vars.A_NAME }}.xml
+      #     path: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: ${{ vars.A_NAME }}.xml
-          path: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
+          name: ${{ vars.A_NAME }}
+          files: ${{ env.OUTPUT }}/${{ vars.A_NAME }}.xml
