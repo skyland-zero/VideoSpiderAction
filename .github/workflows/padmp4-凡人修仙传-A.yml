@@ -1,0 +1,48 @@
+name: Fan Ren Xiu Xian Zhuan（A）
+
+on:
+  push:
+    branches:
+      - main
+
+# on:
+#   schedule:
+#     - cron: "*/13 * * * *"
+
+env:
+  DOTNET_VERSION: "9.0.0-rc.2" # The .NET SDK version to use
+  PROJECT: "padmp4"
+  OUTPUT: "/home/runner/out"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: szenius/set-timezone@v2.0
+        with:
+          timezoneLinux: "Asia/Shanghai"
+
+      - uses: actions/checkout@v4
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          cd ${{ env.PROJECT }}
+          dotnet restore
+
+      - name: Build
+        run: |
+          cd ${{ env.PROJECT }}
+          dotnet publish -c Release --no-restore -o ${{ env.OUTPUT }} ./${{ env.PROJECT }}.csproj
+
+      - name: Run
+        env: # Or as an environment variable
+          URL: ${{ vars.A_URL }}
+          NAME: ${{ vars.A_NAME }}
+          DOWNLOAD_TAGS: ${{ vars.A_DOWNLOAD_TAGS }}
+        run: |
+          cd ${{ env.OUTPUT }}
+          dotnet ${{ env.PROJECT }}.dll
