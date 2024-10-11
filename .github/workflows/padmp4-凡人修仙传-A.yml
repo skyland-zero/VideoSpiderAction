@@ -30,14 +30,14 @@ jobs:
 
       - name: Install DotNet
         run: |
-          sudo  export DOTNET_ROOT=$HOME/.dotnet
-          sudo  export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
-          sudo  apt-get update
-          sudo  apt-get install -y wget
-          sudo  wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
-          sudo  chmod +x ./dotnet-install.sh
+          sudo export DOTNET_ROOT=$HOME/.dotnet
+          sudo export PATH=$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools
+          sudo apt-get update
+          sudo apt-get install -y wget
+          sudo wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+          sudo chmod +x ./dotnet-install.sh
           sudo ./dotnet-install.sh --channel ${{ env.DOTNET_VERSION }}
-          sudo  ~/.bash_profile
+          sudo ~/.bash_profile
 
       - name: Install dependencies
         run: |
